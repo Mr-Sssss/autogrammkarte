@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mr"S Autogrammkartenwelt!</title>
+  <link rel="icon" type="image/x-icon" href="medien/bilder/logo.png">
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="container">
+<div class="secondary-container">
+  <nav class="navbar navigation-bar">
+    <div class="container-fluid navigation-bar">
+        <img src="medien/bilder/logo.png" width="30" height="24">
+        <span class="navigation-bar"><b>Mr'S Autogrammkartenwelt!</b></span>
+        <ul>
+          <li><a onclick="switchToStartseite()">Startseite</a></li>
+          <li><a onclick="switchToTwitch()">Twitch</a></li>
+          <li><a onclick="switchToAutogrammkartenmacher()">Autogrammkartenmacher</a></li>
+          <li><a onclick="switchToArchiv()">Archiv</a></li>
+          <li><a onclick="switchToExtras()">Extras</a></li>
+          <button id="settings-button" aria-label="Einstellungen öffnen" title="Einstellungen öffnen">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm112-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Z"/></svg>
+        </ul>
+      </a>
+    </div>
+    <hr>
+  </nav>
+
+<!--Settings-->
+  <div id="settings-popup" aria-hidden="true" role="dialog" aria-label="Einstellungen">
+    <h2>Einstellungen</h2>
+    <button class="close-btn" aria-label="Einstellungen schließen">&times;</button>
+  <hr>
+    <div class="setting">
+      <div class="setting-label" class="break"><span>Hell/Dunkelmodus</span></div>
+          <button class="button1" id="themeswitch">
+           <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e3e3e3"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM223-417H17v-126h206v126Zm720 0H737v-126h206v126ZM417-737v-206h126v206H417Zm0 720v-206h126v206H417ZM255-616 123-745l88-93 130 130-86 92Zm494 494L618-253l86-89 133 127-88 93ZM618-704l127-133 93 88-130 130-90-85ZM122-211l131-131 89 86-127 133-93-88Z"/></svg>
+           <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#e3e3e3"><path d="M479.82-105q-156.17 0-265.5-109.32Q105-323.65 105-479.82 105-636 214.38-746 323.75-856 480-856q11 0 22.5.5T525-853q-29 33-47 74t-18 87q0 97.08 68.54 165.04T695-459q45 0 86-17.5t73-46.5q1 11 1.5 21.21.5 10.2.5 20.79 0 156-110 266T479.82-105Z"/></svg>
+          </button>
+    </div>
+
+    <div class="setting">
+      <div class="setting-label" class="break"><span>Entspannte Hintergrundmusik</span></div>
+          <button class="button2" id="musik">
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#FFFFFF"><path d="M792-56 56-792l56-56 736 736-56 56ZM560-514l-80-80v-246h240v160H560v166ZM400-120q-66 0-113-47t-47-113q0-66 47-113t113-47q23 0 42.5 5.5T480-418v-62l80 80v120q0 66-47 113t-113 47Z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="15px" viewBox="0 -960 960 960" width="15px" fill="#FFFFFF"><path d="M287-167q-47-47-47-113t47-113q47-47 113-47 23 0 42.5 5.5T480-418v-422h240v160H560v400q0 66-47 113t-113 47q-66 0-113-47Z"/></svg>
+          </button>
+    </div>
+
+    <div>
+      <div class="setting-label" class="break"><span>Der Konsumopfermodus</span></div>
+        <button class="button3" id="brainrot">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-80v-172q-57-52-88.5-121.5T120-520q0-150 105-255t255-105q125 0 221.5 73.5T827-615l52 205q5 19-7 34.5T840-360h-80v120q0 33-23.5 56.5T680-160h-80v80h-80v-160h160v-200h108l-38-155q-23-91-98-148t-172-57q-116 0-198 81t-82 197q0 60 24.5 114t69.5 96l26 24v208h-80Zm254-360Zm-54 80h80l6-50q8-3 14.5-7t11.5-9l46 20 40-68-40-30q2-8 2-16t-2-16l40-30-40-68-46 20q-5-5-11.5-9t-14.5-7l-6-50h-80l-6 50q-8 3-14.5 7t-11.5 9l-46-20-40 68 40 30q-2 8-2 16t2 16l-40 30 40 68 46-20q5 5 11.5 9t14.5 7l6 50Zm-2.5-117.5Q420-495 420-520t17.5-42.5Q455-580 480-580t42.5 17.5Q540-545 540-520t-17.5 42.5Q505-460 480-460t-42.5-17.5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-80v-172q-57-52-88.5-121.5T120-520q0-150 105-255t255-105q125 0 221.5 73.5T827-615l52 205q5 19-7 34.5T840-360h-80v120q0 33-23.5 56.5T680-160h-80v80h-80v-160h160v-200h108l-38-155q-23-91-98-148t-172-57q-116 0-198 81t-82 197q0 60 24.5 114t69.5 96l26 24v208h-80Zm254-360Zm-14 120q17 0 28.5-11.5T520-360q0-17-11.5-28.5T480-400q-17 0-28.5 11.5T440-360q0 17 11.5 28.5T480-320Zm-30-128h61q0-25 6.5-40.5T544-526q18-20 35-40.5t17-53.5q0-42-32.5-71T483-720q-40 0-72.5 23T365-637l55 23q7-22 24.5-35.5T483-663q22 0 36.5 12t14.5 31q0 21-12.5 37.5T492-549q-20 21-31 42t-11 59Z"/></svg>
+        </button>
+    </div>
+
+    <br>
+
+    <div>
+      <div class="setting-label" class="break"><span>Wähle hier einfach deinen IQ aus (statt ne gute IQ-Test Website zu suchen)</span></div>
+      <input type="range" id="iq" name="iq" min="0" max="228" value="100">
+      <span id="iqwert">100 IQ</span>
+    </div>
+
+    <audio controls class="musikplayer" id="musikplayer" loop>
+      <source src="medien/sounds/entspanntemusik.mp3" type="audio/ogg">
+      <source src="medien/sounds/entspanntemusik.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+    <audio controls class="musikplayer" id="musikplayer1" loop>
+      <source src="medien/sounds/brainrot.MP3" type="audio/ogg">
+      <source src="medien/sounds/brainrot.MP3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+  <br>
+
+</div>
+
+<!--Unsichtbare Medien-->
+<img src="medien/bilder/bilddumm.jpeg" width="500px" lenght="400px" class="fullscreen-overlay" style="opacity: 0%;" id="bilddumm">
+<img src="medien/bilder/bildschlau.jpg" width="500px" lenght="400px" class="fullscreen-overlay" style="opacity: 0%;" id="bildschlau">
+<video width="720" height="640"  class="displaynone" style="position: fixed; top: 0px; left:20px" id="subwaysurfersvid" loop><source src="medien/videos/subwaysurfers.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+<video width="320" height="240"  class="displaynone" style="position: fixed; top: 60px; right:350px" id="familyguyvid" loop><source src="medien/videos/familyguy.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+<video width="520" height="440"  class="displaynone" style="position: fixed; top: 300px; right:500px" id="slimevid" loop><source src="medien/videos/slime.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+<video width="320" height="240"  class="displaynone" style="position: fixed; bottom: 90px; right:600px" id="spongebobvid" loop><source src="medien/videos/spongebob.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+<video width="520" height="440"  class="displaynone" style="position: fixed; bottom: 20px; left:60px" id="gtavid" loop><source src="medien/videos/gta.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+<video width="33%" height="100%" style="position: fixed; top: 0%; left: 33%; z-index: 100000000;" class="displaynone" id="angstvid"><source src="medien/videos/angst.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+<video width="33%" height="100%" style="position: fixed; top: 0%; left: 33%; z-index: 100000001;" class="displaynone" id="ttsvid"><source src="medien/videos/ttsragebait.MOV" type="video/mp4">Your browser does not support the video tag.</video>
+
+
+<!--Zartipause-->
+<div class="displaynone" id="zartipause">
+  <canvas id="myCanvas" width="200" height="100" style="background-color: rgb(0, 0, 0); opacity: 50%; pointer-events: all;" class="fullscreen-overlay"></canvas>
+  <canvas id="myCanvas" width="600px" height="400px" style="background-color: rgb(255, 166, 0);   position: fixed; z-index: 10000; left: 32%; top: 28%;"></canvas>
+  <h1 style="position: fixed; z-index: 10000; left: 40%; top: 28%;">ZARTIIII PAUSEEE</h1>
+  <video width="500" height="500" style="position: fixed; z-index: 10001;  left: 35%; top: 25%;" id="zarti"><source src="medien/videos/zarti.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+</div>
+
+<!--Sites-->
+
+<div id="Startseite">
+  <h1 style="align-items: center; display: flex; flex-direction: column;">HALLO SOMBERLYYYYYYYYY</h1>
+  <h3 style="align-items: center; display: flex; flex-direction: column;">Hier ist eine Website, die ich nur für dich erstellt habe.</h3>
+  <br>
+  <h4 style="align-items: center; display: flex; flex-direction: column;">Es hat eine ganze Woche gebraucht dies fertigzustellen, ich hoffe dir gefällt es.</h4>
+  <h4 style="align-items: center; display: flex; flex-direction: column;">Guck dir auf jeder Seite alles genau an gibt immer etwas anzugucken :&rpar;</h4>
+  <br>
+  <h5 style="align-items: center; display: flex; flex-direction: column;">Ich selber bin so richtig scheiße in CSS, deswegen ist die Website designmäßig eher mau.</h5>
+  <p style="align-items: center; display: flex; flex-direction: column; font-size: 10px;">PS: Ich weiß das du während du auf Klo gehst onstream, du dann Goonst. Ich kann es nur nicht beweisen.</p>
+  <br>  
+  <img src="medien/bilder/s1.png" style="display:inline-block;" width="200" height="105">
+  <img src="medien/bilder/s2.png" style="display:inline-block;" width="105" height="105">
+  <img src="medien/bilder/s3.png" style="display:inline-block;" width="180" height="105">
+  <img src="medien/bilder/s4.png" style="display:inline-block;" width="180" height="105">
+  <img src="medien/bilder/s5.png" style="display:inline-block;" width="180" height="105">
+  <img src="medien/bilder/s6.png" style="display:inline-block;" width="180" height="105">
+  <img src="medien/bilder/s7.png" style="display:inline-block;" width="180" height="105">
+</div>
+
+<div class="Twitch" id="Twitch">
+<div id="twitch-embed" style="display:inline-block;"></div>
+  
+  <iframe
+    style="display:inline-block;"
+    id="chat_embed"
+    src="https://www.twitch.tv/embed/mr_ssss_/chat?parent=127.0.0.1"
+    height="563px"
+    width="290px">
+  </iframe>
+  <div id="channelpoints" style="display: flex; flex-direction: row-reverse;">
+    <button style="width: 130px; height: 20px; pointer-events: none; opacity: 0%;"></button>
+
+    <button class="cikFpu points" id="pointsBtn">
+      <div>
+        <img src="medien/bilder/autogrammkarten.png" width="16px" height="16px">
+        <span id="pointcount" style="size: 1px; color: var(--primary-text-color)">100 Autogrammies</span>
+      </div>
+    </button>
+
+    <button style="width: 20px; height: 40px; pointer-events: none; opacity: 0%;"></button>
+
+    <button class="cikFpu abo" id="abob">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#ffffff" fill-rule="evenodd" d="M14.026 9.626 12 5.114 9.974 9.626l-4.909.514 3.666 3.28-1.029 4.815L12 15.775l4.298 2.46-1.03-4.816 3.667-3.279-4.91-.514ZM8.62 7.756l-5.525.58c-1.052.11-1.476 1.405-.69 2.109l4.127 3.691-1.153 5.395c-.22 1.028.89 1.828 1.808 1.303L12 18.08l4.812 2.755c.917.525 2.028-.275 1.808-1.303l-1.153-5.395 4.127-3.691c.787-.704.362-2-.69-2.11l-5.525-.578-2.262-5.037c-.43-.96-1.803-.96-2.234 0L8.62 7.757Z" clip-rule="evenodd"></path>
+      </svg>
+      <span style="color: white" id="abobtext">Abonnieren</span>
+    </button>
+
+    <button style="width: 10px; height: 40px; pointer-events: none; opacity: 0%;"></button>
+
+    <button class="cikFpu sub" id="subb">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="var(--primary-text-color)" fill-rule="evenodd" d="M5 5.192V7H2v8h1v7h18v-7h1V7h-3V5.192a3.192 3.192 0 0 0-5.93-1.642L12 5.333 10.93 3.55A3.193 3.193 0 0 0 5 5.192ZM17 7V5.192a1.192 1.192 0 0 0-2.215-.613L13.332 7H17Zm-6.332 0L9.215 4.579A1.192 1.192 0 0 0 7 5.192V7h3.668ZM11 9v4H4V9h7Zm2 0v4h7V9h-7Zm-8 6h6v5H5v-5Zm8 0v5h6v-5h-6Z" clip-rule="evenodd"></path>
+      </svg>
+      <span style="color: var(--primary-text-color)" id="subbtext">Sub verschenken</span>
+    </button>
+
+    <button style="width: 550px; height: 40px; pointer-events: none; opacity: 0%;"></button>
+
+    <p class="flex-direction: row;">SomberlyTV</p>
+    <button style="width: 10px; height: 40px; pointer-events: none; opacity: 0%;"></button>
+    <img src="medien/bilder/pb.png" width="30px" height="30px">
+  </div>
+  <div id="channelpoints" style="display: flex; flex-direction: row;">
+    <button style="width: 40px; height: 40px; pointer-events: none; opacity: 0%;"></button>
+    <h6>1 JAHR IST VERGANGEN SEIT DEM ICH AUF TWITCH LIVE BIN ツ !socials !heute !7tv</h6>
+  </div>
+</div>
+
+<div id="pointsmenu" class="pointsmenuclass displaynone">
+  <button class="pointsmenuBtn" style="background-color: rgb(255, 123, 0);" id="pointAngst">
+    <div class="pointsBtnContent">
+      <svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#e3e3e3">
+        <path d="M360-400h80v-320h-80v320Zm160 0h80v-320h-80v320ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"/></svg>
+        <br>
+        <span>Angst hervorheben</span>
+        <br>
+        <span style="background-color: #0000001e; border-radius: 5px;"><img src="medien/bilder/autogrammkarten.png" width="10px" height="10px"> 100</span>
+    </div>
+  </button>
+  <button class="pointsmenuBtn" style="background-color: rgb(112, 8, 146);" id="pointDarkmode">    
+    <div class="pointsBtnContent">
+      <svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#e3e3e3">
+        <path d="M240-640h360v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85h-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640Zm0 480h480v-400H240v400Zm296.5-143.5Q560-327 560-360t-23.5-56.5Q513-440 480-440t-56.5 23.5Q400-393 400-360t23.5 56.5Q447-280 480-280t56.5-23.5ZM240-160v-400 400Z"/></svg>
+        <br>
+        <span>Darkmode Freischallten</span>
+        <br>
+        <span style="background-color: #0000001e; border-radius: 10px;"><img src="medien/bilder/autogrammkarten.png" width="10px" height="10px"> 320</span>
+    </div>
+  </button>
+  <button class="pointsmenuBtn" style="background-color: rgb(124, 9, 255);" id="pointTTS">    
+    <div class="pointsBtnContent">
+      <svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#e3e3e3">
+        <path d="M160-80q-33 0-56.5-23.5T80-160v-640q0-33 23.5-56.5T160-880h326l-80 80H160v640h440v-80h80v80q0 33-23.5 56.5T600-80H160Zm80-160v-80h280v80H240Zm0-120v-80h200v80H240Zm360 0L440-520H320v-200h120l160-160v520Zm80-122v-276q36 21 58 57t22 81q0 45-22 81t-58 57Zm0 172v-84q70-25 115-86.5T840-620q0-78-45-139.5T680-846v-84q104 27 172 112.5T920-620q0 112-68 197.5T680-310Z"/></svg>
+        <br>
+        <span>Text to Speech</span>
+        <br>
+        <span style="background-color: #0000001e; border-radius: 10px;"><img src="medien/bilder/autogrammkarten.png" width="10px" height="10px"> 500</span>
+    </div>
+  </button>
+  <button class="pointsmenuBtn" style="background-color: rgb(116, 158, 255);" id="pointDA">    
+    <div class="pointsBtnContent">
+      <svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#e3e3e3">
+        <path d="M160-120q-33 0-56.5-23.5T80-200v-560q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v560q0 33-23.5 56.5T800-120H160Zm0-80h640v-560H160v560Zm80-80h480v-80H240v80Zm0-160h160v-240H240v240Zm240 0h240v-80H480v80Zm0-160h240v-80H480v80ZM160-200v-560 560Z"/></svg>
+        <br>
+        <span>Digitale Autogramm- karte</span>
+        <br>
+        <span style="background-color: #0000001e; border-radius: 10px;"><img src="medien/bilder/autogrammkarten.png" width="10px" height="10px"> 50000</span>
+    </div>
+  </button>
+  <button class="pointsmenuBtn" style="background-color: rgb(153, 224, 255);" id="pointRA">    
+    <div class="pointsBtnContent">
+      <svg xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="14px" fill="#e3e3e3">
+        <path d="M160-120q-33 0-56.5-23.5T80-200v-560q0-33 23.5-56.5T160-840h640q33 0 56.5 23.5T880-760v560q0 33-23.5 56.5T800-120H160Zm0-80h640v-560H160v560Zm80-80h480v-80H240v80Zm0-160h160v-240H240v240Zm240 0h240v-80H480v80Zm0-160h240v-80H480v80ZM160-200v-560 560Z"/></svg>
+        <br>
+        <span>Richtige Autogramm- karte</span>
+        <br>
+        <span style="background-color: #0000001e; border-radius: 10px;"><img src="medien/bilder/autogrammkarten.png" width="10px" height="10px"> 100000</span>
+    </div>
+  </button>
+</div>
+
+<div class="Autogrammkartenmacher" id="Autogrammkartenmacher">
+  <br>
+  <h2>Hier kannst du deine eigene Autogrammkarte zeichnen und dann auch ausdrucken lassen</h2>
+  <h6>Hintergrund musst du einzeichenen, weil der download es sonst nicht hinbekommt (frag nicht wieso)</h6>
+  <br>
+  <canvas id="canvasAK" width="1000" height="600" class="canvasAK"></canvas>
+
+  <div id="toolboxAK">
+    <button id="minusAK" class="textAK">-</button>
+    <span id="sizePanelAK" class="textAK">10</span>
+    <button id="plusAK" class="textAK">+</button>
+
+    <input type="color" id="colorAK">
+    <button id="clearAK"><span class="clearallAKText">Clear All</span></button>
+    <button id="downloadAK"><span class="clearallAKText">Download</span></button>
+  </div>
+</div>
+
+<div class="Archiv" id="Archiv">
+  <h3>Das Archiv</h3>
+  <h6>Hier sind alle Datein die mit den Autogrammkarten zu tun haben</h4>
+  <br>
+  <div class="Archivwrap">
+    <!-- Ordner -->
+    <section class="folder">
+      <header class="folder-header">
+        <img src="medien/bilder/folder.png" class="folder-icon">
+        <span class="folder-name">Videos</span>
+      </header>
+
+      <!-- Dateien im Ordner -->
+      <div class="folder-content">
+        <article class="file">
+          <img src="medien/bilder/vidlogo_erstestt.png" class="file-preview" data-full="medien/videos/sososomberly.mp4" data-type="video">
+          <span class="file-name">sososomberly</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/zeugnissevid-logo.png" class="file-preview" data-full="medien/videos/Autogrammkarte.MOV" data-type="video">
+          <span class="file-name">Autogrammkarte</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/werbung_raw_logo.png" class="file-preview" data-full="medien/videos/werbung_raw.mp4" data-type="video">
+          <span class="file-name">werbung_raw</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/werbung_extra_raw_logo.png" class="file-preview" data-full="medien/videos/werbung_extra.MOV" data-type="video">
+          <span class="file-name">werbung_extra</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/ahhhhhh_logo.png" class="file-preview" data-full="medien/videos/ahhh.mp4" data-type="video">
+          <span class="file-name">ahhh</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/epstein_logo.png" class="file-preview" data-full="medien/videos/epstein_tuff_boy.mp4" data-type="video">
+          <span class="file-name">epstein_tuff_boy</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/cookie_clicker_logo.png" class="file-preview" data-full="medien/videos/cookie_extra.MOV" data-type="video">
+          <span class="file-name">cookie_extra</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/last_ai1.mp4" data-type="video">
+          <span class="file-name">last_ai1</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/last_ai2.mp4" data-type="video">
+          <span class="file-name">last_ai2</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/last_ai3.mp4" data-type="video">
+          <span class="file-name">last_ai3</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/last_ai4.mp4" data-type="video">
+          <span class="file-name">last_ai4</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/last_ai5.mp4" data-type="video">
+          <span class="file-name">last_ai5</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/last_ai6.mp4" data-type="video">
+          <span class="file-name">last_ai6</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/last_ai7.mp4" data-type="video">
+          <span class="file-name">last_ai7</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/last_ai8.mp4" data-type="video">
+          <span class="file-name">last_ai8</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/last_ai9.mp4" data-type="video">
+          <span class="file-name">last_ai9</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/last_ai10.mp4" data-type="video">
+          <span class="file-name">last_ai10</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/twitch_clip_logo.png" class="file-preview" data-full="medien/videos/stream_clip.mp4" data-type="video">
+          <span class="file-name">stream_clip</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/videos/sora_logo" data-type="video">
+          <span class="file-name">final_video</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/outro_logo.png" class="file-preview" data-full="medien/videos/outro.mov" data-type="video">
+          <span class="file-name">outro</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/subwaysurfers_logo.png" class="file-preview" data-full="medien/videos/subwaysurfers.mp4" data-type="video">
+          <span class="file-name">subway_surfers</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/familyguy_logo.png" class="file-preview" data-full="medien/videos/familyguy.mp4" data-type="video">
+          <span class="file-name">family_guy</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/slime_logo.png" class="file-preview" data-full="medien/videos/slime.mp4" data-type="video">
+          <span class="file-name">slime</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/spongebob_logo.png" class="file-preview" data-full="medien/videos/spongebob.mp4" data-type="video">
+          <span class="file-name">spongebob</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/gta_logo.png" class="file-preview" data-full="medien/videos/gta.mp4" data-type="video">
+          <span class="file-name">gta</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/ttsragebait_logo.png" class="file-preview" data-full="medien/videos/ttsragebait.MOV" data-type="video">
+          <span class="file-name">ttsragebait</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/angst_logo.png" class="file-preview" data-full="medien/videos/angst.mp4" data-type="video">
+          <span class="file-name">angst</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/zarti_logo.png" class="file-preview" data-full="medien/videos/zarti.mp4" data-type="video">
+          <span class="file-name">zarti</span>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Ordner -->
+    <section class="folder">
+      <header class="folder-header">
+        <img src="medien/bilder/folder.png" class="folder-icon">
+        <span class="folder-name">Bilder</span>
+      </header>
+
+      <!-- Dateien im Ordner -->
+      <div class="folder-content">
+        <article class="file">
+          <img src="medien/bilder/s1.png" class="file-preview" data-full="medien/bilder/s1.png" data-type="image">
+          <span class="file-name">Somberly1</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/s2.png" class="file-preview" data-full="medien/bilder/s2.png"  data-type="image">
+          <span class="file-name">Somberly2</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/s3.png" class="file-preview" data-full="medien/bilder/s3.png"  data-type="image">
+          <span class="file-name">Somberly3</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/s4.png" class="file-preview" data-full="medien/bilder/s4.png"  data-type="image">
+          <span class="file-name">Somberly4</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/s5.png" class="file-preview" data-full="medien/bilder/s5.png"  data-type="image">
+          <span class="file-name">Somberly5</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/s6.png" class="file-preview" data-full="medien/bilder/s6.png"  data-type="image">
+          <span class="file-name">Somberly6</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/s7.png" class="file-preview" data-full="medien/bilder/s7.png"  data-type="image">
+          <span class="file-name">Somberly7</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/logo.png" class="file-preview" data-full="medien/bilder/logo.png"  data-type="image">
+          <span class="file-name">logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/fghjn.png" class="file-preview" data-full="medien/bilder/fghjn.png"  data-type="image">
+          <span class="file-name">fghjn</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/pb.png" class="file-preview" data-full="medien/bilder/pb.png"  data-type="image">
+          <span class="file-name">pb</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/bildschlau.jpg" class="file-preview" data-full="medien/bilder/bildschlau.jpg"  data-type="image">
+          <span class="file-name">bildschlau</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/bilddumm.jpeg" class="file-preview" data-full="medien/bilder/bilddumm.jpeg"  data-type="image">
+          <span class="file-name">bilddumm</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/autogrammkarten.png" class="file-preview" data-full="medien/bilder/autogrammkarten.png"  data-type="image">
+          <span class="file-name">autogrammkarten</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/folder.png" class="file-preview" data-full="medien/bilder/folder.png"  data-type="image">
+          <span class="file-name">folder</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/audiofile.png" class="file-preview" data-full="medien/bilder/audiofile.png"  data-type="image">
+          <span class="file-name">audiofile</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/autogrammkarte.png" class="file-preview" data-full="medien/bilder/autogrammkarte.png"  data-type="image">
+          <span class="file-name">autogrammkarte</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/sora_logo.png" class="file-preview" data-full="medien/bilder/sora_logo.png"  data-type="image">
+          <span class="file-name">sora_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/vidlogo_erstestt.png" class="file-preview" data-full="medien/bilder/vidlogo_erstestt.png"  data-type="image">
+          <span class="file-name">vidlogo_erstestt</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/zeugnissevid-logo.png" class="file-preview" data-full="medien/bilder/zeugnissevid-logo.png"  data-type="image">
+          <span class="file-name">zeugnissevid-logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/werbung_raw_logo.png" class="file-preview" data-full="medien/bilder/werbung_raw_logo.png"  data-type="image">
+          <span class="file-name">werbung_raw_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/werbung_extra_raw_logo.png" class="file-preview" data-full="medien/bilder/werbung_extra_raw_logo.png"  data-type="image">
+          <span class="file-name">werbung_extra_raw_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/ahhhhhh_logo.png" class="file-preview" data-full="medien/bilder/ahhhhhh_logo.png"  data-type="image">
+          <span class="file-name">ahhhhhh_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/epstein_logo.png" class="file-preview" data-full="medien/bilder/epstein_logo.png"  data-type="image">
+          <span class="file-name">epstein_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/cookie_clicker_logo.png" class="file-preview" data-full="medien/bilder/cookie_clicker_logo.png"  data-type="image">
+          <span class="file-name">cookie_clicker_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/twitch_clip_logo.png" class="file-preview" data-full="medien/bilder/twitch_clip_logo.png"  data-type="image">
+          <span class="file-name">twitch_clip_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/subwaysurfers_logo.png" class="file-preview" data-full="medien/bilder/subwaysurfers_logo.png"  data-type="image">
+          <span class="file-name">subwaysurfers_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/familyguy_logo.png" class="file-preview" data-full="medien/bilder/familyguy_logo.png"  data-type="image">
+          <span class="file-name">familyguy_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/slime_logo.png" class="file-preview" data-full="medien/bilder/slime_logo.png"  data-type="image">
+          <span class="file-name">slime_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/spongebob_logo.png" class="file-preview" data-full="medien/bilder/spongebob_logo.png"  data-type="image">
+          <span class="file-name">spongebob_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/gta_logo.png" class="file-preview" data-full="medien/bilder/gta_logo.png"  data-type="image">
+          <span class="file-name">gta_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/angst_logo.png" class="file-preview" data-full="medien/bilder/angst_logo.png"  data-type="image">
+          <span class="file-name">angst_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/ttsragebait_logo.png" class="file-preview" data-full="medien/bilder/ttsragebait_logo.png"  data-type="image">
+          <span class="file-name">ttsragebait_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/zarti_logo.png" class="file-preview" data-full="medien/bilder/zarti_logo.png"  data-type="image">
+          <span class="file-name">zarti_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/outro_logo.png" class="file-preview" data-full="medien/bilder/outro_logo.png"  data-type="image">
+          <span class="file-name">sora_logo</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/outro_rabbit.png" class="file-preview" data-full="medien/bilder/outro_rabbit.png"  data-type="image">
+          <span class="file-name">outro_rabbit</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/html.png" class="file-preview" data-full="medien/bilder/html.png"  data-type="image">
+          <span class="file-name">html</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/js.png" class="file-preview" data-full="medien/bilder/js.png"  data-type="image">
+          <span class="file-name">js</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/css.png" class="file-preview" data-full="medien/bilder/css.png"  data-type="image">
+          <span class="file-name">css</span>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Ordner -->
+    <section class="folder">
+      <header class="folder-header">
+        <img src="medien/bilder/folder.png" class="folder-icon">
+        <span class="folder-name">Audiotracks</span>
+      </header>
+
+      <!-- Dateien im Ordner -->
+      <div class="folder-content">
+        <article class="file">
+          <img src="medien/bilder/audiofile.png" class="file-preview" data-full="medien/sounds/brainrot.mp3"  data-type="audio">
+          <span class="file-name">brainrot</span>
+        </article>
+        <article class="file">
+          <img src="medien/bilder/audiofile.png" class="file-preview" data-full="medien/sounds/entspanntemusik.mp3"  data-type="audio">
+          <span class="file-name">entspanntemusik</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- Ordner -->
+    <section class="folder">
+      <header class="folder-header">
+        <img src="medien/bilder/folder.png" class="folder-icon">
+        <span class="folder-name">Code</span>
+      </header>
+
+      <!-- Dateien im Ordner -->
+      <div class="folder-content">
+        <article class="file">
+          <img src="medien/bilder/html.png" class="file-preview" onclick="const link = document.createElement('a');link.download = 'html_data.html'; link.href = 'index.html';link.click();">
+          <span class="file-name">html</span>
+        </article>
+
+        <article class="file">
+          <img src="medien/bilder/js.png" class="file-preview" onclick="const link = document.createElement('a');link.download = 'js_data.js'; link.href = 'script.js';link.click();">
+          <span class="file-name">JavaScript</span>
+        </article>
+
+        <article class="file">
+          <img src="medien/bilder/css.png" class="file-preview" onclick="const link = document.createElement('a');link.download = 'css_data.css'; link.href = 'style.css';link.click();">
+          <span class="file-name">CSS</span>
+        </article>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="Extras" id="Extras">
+  <h3>Hier ist noch ein bisshen Extra Stuff</h3>
+  <br>
+  <p>Hier ist noch ein freshes <a href="https://lessgames.com/wordless/3QAPJ" target="_blank">Custom Wordle</a> für dich (Auf Englisch)</p>
+  <p>Hier ist das <a href="https://sora.chatgpt.com/profile/autogrammkartendude" target="_blank">Sora Cameo</a></p>
+  <p>Hier ist eine Website für <a target="_blank" href="https://www.vistaprint.de/marketingmaterial/postkarten?PCXTVATINCLUSIVE=&utm_id=2B00374893006758802264&coupon=&partner=google&ps_vtp=17474344|511747864||kwd-302819846051|c|9198195||g&ps_vtp2=g|autogrammkarten%20erstellen|b|486748061436|||||&gad_source=1&gad_campaignid=17474344&gbraid=0AAAAACUDNVvifrAkyIeMHvCfZwaegGgZd&gclid=CjwKCAiAzOXMBhASEiwAe14SaY-YInnel-x8VakpTJSla3-Lzj0yK_aXrNOML0smyts5feSrKFVO3xoCQR8QAvD_BwE">Autogrammkarten</a></p>
+  <p>Hier ist mein <a href="https://www.tiktok.com/@mr_ssss_1" target="_blank">TikTok Profil</a> das nur für die Autogrammkarten Vids waren</p>
+  <br>
+  <h5>Credits</h5>
+  <p>Videos: Sora aka. ChatGPT (Mr. S)</p>
+  <p>Website: Mr. S (und ein wenig ChatGPT)</p>
+  <p>Design: ChatGPT</p>
+  <p>Startseite: Mr. S</p>
+  <p>Twitchseite: Twitch, Mr. S, ChatGPT</p>
+  <p>Autogrammkartenmacher: <a target="_blank" href="https://github.com/ReakZ">ReakZ</a>, ChatGPT</p>
+  <p>Archiv: ChatGPT</p>
+  <p>Extras: Mr. S</p>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
