@@ -176,7 +176,7 @@ function switchToTwitch(){
   }
   starttwitchifon()
 
-  setTimeout(() => {zartipauseon()}, 1000);
+  setTimeout(() => {zartipauseon()}, 100000);
 }
 
 function switchToAutogrammkartenmacher(){
