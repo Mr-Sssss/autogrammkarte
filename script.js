@@ -115,32 +115,12 @@ const brainrotswitch = document.getElementById('brainrot')
 function enablebrainrot() {
   document.body.classList.add('brainroten')
   localStorage.setItem('brainrot', 'active')
-  document.getElementById('subwaysurfersvid').play()
-  document.getElementById('familyguyvid').play()
-  document.getElementById('slimevid').play()
-  document.getElementById('spongebobvid').play()
-  document.getElementById('gtavid').play()
-  document.getElementById('subwaysurfersvid').classList.remove('displaynone')
-  document.getElementById('familyguyvid').classList.remove('displaynone')
-  document.getElementById('slimevid').classList.remove('displaynone')
-  document.getElementById('spongebobvid').classList.remove('displaynone')
-  document.getElementById('gtavid').classList.remove('displaynone')
   document.getElementById('musikplayer1').play()
 }
 
 function disablebrainrot() {
   document.body.classList.remove('brainroten')
   localStorage.setItem('brainrot', 'null')
-  document.getElementById('subwaysurfersvid').pause()
-  document.getElementById('familyguyvid').pause()
-  document.getElementById('slimevid').pause()
-  document.getElementById('spongebobvid').pause()
-  document.getElementById('gtavid').pause()
-  document.getElementById('subwaysurfersvid').classList.add('displaynone')
-  document.getElementById('familyguyvid').classList.add('displaynone')
-  document.getElementById('slimevid').classList.add('displaynone')
-  document.getElementById('spongebobvid').classList.add('displaynone')
-  document.getElementById('gtavid').classList.add('displaynone')
   document.getElementById('musikplayer1').pause()
 }
 
@@ -196,7 +176,7 @@ function switchToTwitch(){
   }
   starttwitchifon()
 
-  //setTimeout(() => {zartipauseon()}, 100000);
+  setTimeout(() => {zartipauseon()}, 1000);
 }
 
 function switchToAutogrammkartenmacher(){
@@ -229,7 +209,6 @@ function switchToExtras(){
 //Zartipause
 function zartipauseon(){
   document.getElementById('zartipause').classList.remove('displaynone')
-  document.getElementById('zarti').play()
   setTimeout(() => {
     zartipauseoff()
 }, 16000);
@@ -326,9 +305,7 @@ function angst(){
 }
 
 function ttsragebait(){
-  document.getElementById('ttsvid').classList.remove('displaynone')
-  document.getElementById('ttsvid').play()
-  setTimeout(() => {document.getElementById('ttsvid').pause(); document.getElementById('ttsvid').classList.add('displaynone')}, 131000);
+  alert('JUNGE ICH HABE ALLES VERSUCHT NE FUCKING TTS API EINZUFÜGEN. nix hat funktioniert. MANNNNN')
 }
 
 function digitalAutogramm(){
