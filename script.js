@@ -212,7 +212,7 @@ function zartipauseon(){
   document.getElementById('zarti').setAttribute('src', 'https://www.youtube.com/embed/M0_z5WmMV-c?autoplay=1&mute=0')
   setTimeout(() => {
     zartipauseoff()
-}, 16000);
+}, 60000);
 }
 
 function zartipauseoff(){
