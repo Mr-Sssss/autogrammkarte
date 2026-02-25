@@ -209,6 +209,7 @@ function switchToExtras(){
 //Zartipause
 function zartipauseon(){
   document.getElementById('zartipause').classList.remove('displaynone')
+  document.getElementById('zarti').setAttribute('src', 'https://www.youtube.com/embed/M0_z5WmMV-c?autoplay=1&mute=0')
   setTimeout(() => {
     zartipauseoff()
 }, 16000);
@@ -216,6 +217,7 @@ function zartipauseon(){
 
 function zartipauseoff(){
   document.getElementById('zartipause').classList.add('displaynone')
+  document.getElementById('zarti').setAttribute('src', 'https://www.youtube.com/embed/M0_z5WmMV-c?autoplay=1&mute=1')
 }
 
 //Twitch
