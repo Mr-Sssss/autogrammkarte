@@ -173,10 +173,9 @@ function switchToTwitch(){
   if (onetimepassthoughfortwitchvariable === 1){
     onetimepassthoughfortwitchvariable = 0
     onetimeclickontwitch()
+    setTimeout(() => {zartipauseon()}, 100000);
   }
   starttwitchifon()
-
-  setTimeout(() => {zartipauseon()}, 100000);
 }
 
 function switchToAutogrammkartenmacher(){
